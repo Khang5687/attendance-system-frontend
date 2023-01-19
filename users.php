@@ -12,7 +12,7 @@ $users = $database->select("users", [
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Attendance System</title>
+        <title>Imaginery Gym Check-in</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -21,19 +21,19 @@ $users = $database->select("users", [
     <body>
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Attendance System</a>
+        <a class="navbar-brand" href="/attendance">Imaginery Gym Check-in System</a>
         <ul class="nav nav-pills">
             <li class="nav-item">
                 <a href="attendance.php" class="nav-link">View Attendance</a>
             </li>
             <li class="nav-item">
-                <a href="users.php" class="nav-link active">View Users</a>
+                <a href="users.php" class="nav-link active">View Members</a>
             </li>
         </ul>
     </nav>
     <div class="container">
         <div class="row">
-            <h2>Users</h2>
+            <h2>Members</h2>
         </div>
         <table class="table table-striped">
             <thead class="thead-dark">

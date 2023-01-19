@@ -9,7 +9,7 @@ $users = $database->select("users", [
 
 //Check if we have a year passed in through a get variable, otherwise use the current year
 if (isset($_GET['year'])) {
-    $current_year = int($_GET['year']);
+    $current_year = intval($_GET['year']);
 } else {
     $current_year = date('Y');
 }
@@ -28,7 +28,7 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Attendance System</title>
+        <title>Imaginery Gym Check-in</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -37,13 +37,13 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
     <body>
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Attendance System</a>
+        <a class="navbar-brand" href="/attendance">Imaginery Gym Check-in System</a>
         <ul class="nav nav-pills">
             <li class="nav-item">
                 <a href="attendance.php" class="nav-link active">View Attendance</a>
             </li>
             <li class="nav-item">
-                <a href="users.php" class="nav-link">View Users</a>
+                <a href="users.php" class="nav-link">View Members</a>
             </li>
         </ul>
     </nav>
@@ -55,8 +55,9 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Today</th>
                     <?php
-                        //Generate headers for all the available days in this month
+                        //Generate headers for all the available days in this month starting from tomorrow
                         for ( $iter = 1; $iter <= $num_days; $iter++) {
                             echo '<th scope="col" style="min-width:200px;max-width:300px;">' . $iter . '</th>';
                         }
@@ -69,10 +70,31 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
                     foreach($users as $user) {
                         echo '<tr>';
                         echo '<td scope="row">' . $user['name'] . '</td>';
+                        //Fetch the attendance data for the current date
+                        $attendance = $database->select("attendance", [
+                            'clock_in'
+                        ], [
+                            'user_id' => $user['id'],
+                            'clock_in[<>]' => [
+                                date('Y-m-d'),
+                                date('Y-m-d', time() + 86400)
+                            ]
+                        ]);
 
-                        //Iterate through all available days for this month
+                        //Check if we have found any attendance data
+                        if(!empty($attendance)) {
+                            //If we have found some data we loop through that adding it to the table's cell
+                            echo '<td class="table-success">';
+                            foreach($attendance as $attendance_data) {
+                                echo $attendance_data['clock_in'] . '<br>';
+                            }
+                            echo '</td>';
+                        } else {
+                            echo '<td>-</td>';
+                        }
+                        //Iterate through all available days for this month starting from tomorrow
                         for ( $iter = 1; $iter <= $num_days; $iter++) {
-                            
+
                             //For each pass grab any attendance that this particular user might of had for that day
                             $attendance = $database->select("attendance", [
                                 'clock_in'
@@ -89,12 +111,11 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
                                 //If we have found some data we loop through that adding it to the tables cell
                                 echo '<td class="table-success">';
                                 foreach($attendance as $attendance_data) {
-                                    echo $attendance_data['clock_in'] . '</br>';
+                                    echo $attendance_data['clock_in'] . '<br>';
                                 }
                                 echo '</td>';
                             } else {
-                                //If there was nothing in the database notify the user of this.
-                                echo '<td class="table-secondary">No Data Available</td>';
+                                echo '<td>-</td>';
                             }
                         }
                         echo '</tr>';
@@ -103,4 +124,5 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
             </tbody>
         </table>
     </div>
+</body>
 </html>

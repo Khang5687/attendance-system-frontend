@@ -12,5 +12,5 @@ $database = new Medoo([
     'database_name' => 'attendancesystem',
     'server'        => 'localhost',
     'username'      => 'attendanceadmin',
-    'password'      => 'pimylifeup'
+    'password'      => 'loveyou'
 ]);
