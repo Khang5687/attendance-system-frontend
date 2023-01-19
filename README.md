@@ -1,2 +1,3 @@
 # attendance-system-frontend
-RFID Attendance system basic frontend script for our RFID attendance system tutorial.
+Gym attendance system web frontend used for demo in class.
+Intended to run on a Raspberry Pi with RFID RC522 and a 16x2 LCD Display connected.
