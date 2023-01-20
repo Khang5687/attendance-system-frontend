@@ -1,5 +1,6 @@
 <?php
 require 'common.php';
+require_once realpath(__DIR__ . '/vendor/autoload.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,7 @@ require 'common.php';
                 <a href="attendance.php" class="nav-link">View Attendance</a>
             </li>
             <li class="nav-item">
-                <a href="users.php" class="nav-link">View Members</a>
+                <a href="members.php" class="nav-link">View Members</a>
             </li>
         </ul>
     </nav>
@@ -31,7 +32,7 @@ require 'common.php';
         </h3>
         <form>
             <div class="form-group">
-                <input type="text" class="form-control" id="nameInput" onkeydown="if (event.keyCode == 13) { register(); return false}" placeholder="Name...">
+                <input style="min-width:50px;max-width:100px;" type="text" class="form-control" id="nameInput" onkeydown="if (event.keyCode == 13) { register(); return false}" placeholder="Name...">
             </div>
             <button type="button" class="btn btn-primary" onclick="register()">Register</button>
         </form>

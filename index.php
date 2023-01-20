@@ -19,7 +19,7 @@ require 'common.php';
                 <a href="attendance.php" class="nav-link">View Attendance</a>
             </li>
             <li class="nav-item">
-                <a href="users.php" class="nav-link">View Members</a>
+                <a href="members.php" class="nav-link">View Members</a>
             </li>
         </ul>
     </nav>
@@ -31,7 +31,7 @@ require 'common.php';
             </p>
             <div class="row mx-n2">
                 <div class="col-md px-2">
-                    <a href="users.php" class="btn btn-lg btn-outline-secondary w-100 mb-3">Members</a>
+                    <a href="members.php" class="btn btn-lg btn-outline-secondary w-100 mb-3">Members</a>
                 </div>
                 <div class="col-md px-2">
                     <a href="attendance.php" class="btn btn-lg btn-outline-secondary w-100 mb-3" >Attendance</a>

@@ -49,7 +49,7 @@ try:
     time.sleep(1.5)
     lcd.clear()
     lcd.message("Membership \n Registered!")
-    print(f"Member {new_name} registered")
+    print(f"Member registered")
     time.sleep(2)
 finally:
   GPIO.cleanup()

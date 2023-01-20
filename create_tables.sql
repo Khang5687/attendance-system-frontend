@@ -1,0 +1,15 @@
+create table attendance(
+   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
+   user_id INT UNSIGNED NOT NULL,
+   clock_in TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+create table members(
+   id INT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE,
+   rfid_uid VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   membership_expiry DATE NOT NULL,
+   PRIMARY KEY ( id )
+);

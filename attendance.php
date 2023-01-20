@@ -1,5 +1,6 @@
 <?php
 require 'common.php';
+require_once realpath(__DIR__ . '/vendor/autoload.php');
 
 //Grab all users from our database
 $users = $database->select("users", [
@@ -43,7 +44,7 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
                 <a href="attendance.php" class="nav-link active">View Attendance</a>
             </li>
             <li class="nav-item">
-                <a href="users.php" class="nav-link">View Members</a>
+                <a href="members.php" class="nav-link">View Members</a>
             </li>
         </ul>
     </nav>
