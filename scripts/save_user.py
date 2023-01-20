@@ -2,6 +2,7 @@
 
 import sys
 import time
+import datetime
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import mysql.connector
@@ -46,10 +47,17 @@ try:
     cursor.execute(sql_insert, (new_name, id))
 
     db.commit()
+
+    expiry_months = int(input("Membership duration in month: "))
+    expiry_date = datetime.datetime.now() + datetime.timedelta(days=30*expiry_months)
+    expiry_date_str = expiry_date.date().strftime('%Y-%m-%d')
+    cursor.execute("UPDATE users SET expiry_date = %s WHERE rfid_uid=%s", (expiry_date_str, id))
+    db.commit()
+
     time.sleep(1.5)
     lcd.clear()
     lcd.message("Membership \n Registered!")
-    print(f"Member registered")
+    print(f"Member {new_name} registered")
     time.sleep(2)
 finally:
   GPIO.cleanup()

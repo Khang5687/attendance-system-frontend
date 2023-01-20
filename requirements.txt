@@ -1,0 +1,6 @@
+# Adafruit_CharLCD
+git+https://github.com/adafruit/Adafruit_Python_CharLCD@master#egg=Adafruit_CharLCD
+RPi.GPIO
+spidev
+mfrc522
+mysql-connector-python
