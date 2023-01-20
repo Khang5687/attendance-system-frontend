@@ -9,8 +9,8 @@ use Medoo\Medoo;
 //Modify these settings to match your own configuration.
 $database = new Medoo([
     'database_type' => 'mysql',
-    'database_name' => 'attendancesystem',
+    'database_name' => 'imaginerygym',
     'server'        => 'localhost',
-    'username'      => 'attendanceadmin',
+    'username'      => 'gymadmin',
     'password'      => 'loveyou'
 ]);

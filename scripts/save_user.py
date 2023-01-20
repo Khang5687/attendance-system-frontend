@@ -10,9 +10,9 @@ import Adafruit_CharLCD as LCD
 
 db = mysql.connector.connect(
   host="localhost",
-  user="attendanceadmin",
+  user="gymadmin",
   passwd="loveyou",
-  database="attendancesystem"
+  database="imaginerygym"
 )
 
 cursor = db.cursor()
