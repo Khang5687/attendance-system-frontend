@@ -89,3 +89,6 @@ Then source the `~/.bashrc` file to make changes:
 source ~/.bashrc
 ```
 After that, we can use the command `addmember` and `record` to run the two relevant python scripts. This is how we were able to avoid the hassle of typing the full path of the python scripts in the presentation.
+
+## Note
+Due to technical errors, I cannot fully implement the "Register Member" feature on the website. Therefore, please expect bugs when experiment with it.

@@ -1,6 +1,5 @@
 <?php
 require 'common.php';
-require_once realpath(__DIR__ . '/vendor/autoload.php');
 
 //Grab all users from our database
 $members = $database->select("members", [
