@@ -9,7 +9,7 @@ use Medoo\Medoo;
 //Modify these settings to match your own configuration.
 $database = new Medoo([
     'database_type' => 'mysql',
-    'database_name' => 'imaginerygym',
+    'database_name' => 'imaginery_gym',
     'server'        => 'localhost',
     'username'      => 'gymadmin',
     'password'      => 'loveyou'
