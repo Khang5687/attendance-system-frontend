@@ -35,7 +35,7 @@ This project uses MySQL, initialize a MySQL server if you haven't, then follow t
 ```
 sudo mysql_secure_installation
 ```
-Follow the prompts then run `sudo mysql -u root -p`. Enter your password to access MySQL monitor.
+Run `sudo mysql -u root -p`. Enter your password to access MySQL monitor.
 
 Create a user in your database (change the username and password to your liking, or stick with the default):
 ```
@@ -59,6 +59,7 @@ Please set-up NGINX on the Raspberry Pi and allows PHP to be loaded. This is a c
 
 Rename the repository to something that is easier to remember like `attendance` and move the content of the repository to `/var/www/html/`:
 ```
+cd ..
 mv gym-check-in-system-frontend attendance
 sudo mv attendance /var/www/html/
 ```
