@@ -16,7 +16,7 @@ Members:
 - Kang Hyeonseok
 
 ## Initial Setup
-> ⚠️ THIS IS REQUIRED IN ORDER TO MAKE THE WEB WORKS
+> ⚠️ THIS IS REQUIRED IN ORDER TO MAKE THE WEB WORK
 
 On the Raspberry Pi (Tested on Raspberry Pi 3). Install packages dependencies:
 ```
@@ -53,7 +53,7 @@ GRANT ALL PRIVILEGES ON imaginery_gym.* TO 'gymadmin'@'localhost';
 After the database and an admin user have been created, create tables with the query in [create_tables.sql](https://github.com/Khang5687/gym-check-in-system-frontend/blob/master/create_tables.sql) by either run `mysql -u root -p imaginery_gym < create_tables.sql` in the terminal or copy and paste the queries inside MySQL monitor.
 
 If you had made changes like the default username, database name or password. Please change it accordingly in the beginning of these 2 files: `common.php` and `save_user.py`, see the image below:
-![alt text](static/databaseconfig.png.png)
+![alt text](static/databaseconfig.png)
 ## Further configuration
 Please set-up NGINX on the Raspberry Pi and allows PHP to be loaded. This is a comprehensive guide on how to do so: [NGINX Setup for Raspberry Pi](https://pimylifeup.com/raspberry-pi-nginx/)
 
