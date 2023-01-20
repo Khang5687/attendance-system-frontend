@@ -17,29 +17,29 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 reader = SimpleMFRC522()
-lcd = LCD.Adafruit_CharLCD(4, 24, 23, 17, 18, 22, 16, 2, 4);
+lcd = LCD.Adafruit_CharLCD(4, 24, 23, 17, 18, 22, 16, 2, 4)
 
 try:
   while True:
     lcd.clear()
     lcd.message('Place Card to\nregister')
     id, text = reader.read()
-    cursor.execute("SELECT id FROM users WHERE rfid_uid="+str(id))
+    cursor.execute("SELECT id FROM members WHERE rfid_uid="+str(id))
     cursor.fetchone()
 
     if cursor.rowcount >= 1:
       lcd.clear()
-      lcd.message("Overwrite\nexisting user?")
+      lcd.message("Overwrite\nexisting member?")
       overwrite = input("Overwite (Y/N)? ")
       if overwrite[0] == 'Y' or overwrite[0] == 'y':
         lcd.clear()
-        lcd.message("Overwriting user.")
+        lcd.message("Overwriting member.")
         time.sleep(1)
-        sql_insert = "UPDATE users SET name = %s WHERE rfid_uid=%s"
+        sql_insert = "UPDATE members SET name = %s WHERE rfid_uid=%s"
       else:
         continue;
     else:
-      sql_insert = "INSERT INTO users (name, rfid_uid) VALUES (%s, %s)"
+      sql_insert = "INSERT INTO members (name, rfid_uid) VALUES (%s, %s)"
     lcd.clear()
     lcd.message('Registering...')
     new_name = ' '.join(sys.argv[1:])
@@ -51,7 +51,7 @@ try:
     expiry_months = int(input("Membership duration in month: "))
     expiry_date = datetime.datetime.now() + datetime.timedelta(days=30*expiry_months)
     expiry_date_str = expiry_date.date().strftime('%Y-%m-%d')
-    cursor.execute("UPDATE users SET expiry_date = %s WHERE rfid_uid=%s", (expiry_date_str, id))
+    cursor.execute("UPDATE members SET expiry_date = %s WHERE rfid_uid=%s", (expiry_date_str, id))
     db.commit()
 
     time.sleep(1.5)

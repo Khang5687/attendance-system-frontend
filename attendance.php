@@ -3,7 +3,7 @@ require 'common.php';
 require_once realpath(__DIR__ . '/vendor/autoload.php');
 
 //Grab all users from our database
-$users = $database->select("users", [
+$members = $database->select("members", [
     'id',
     'name',
 ]);
@@ -68,14 +68,14 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
             <tbody>
                 <?php
                     //Loop through all our available users
-                    foreach($users as $user) {
+                    foreach($members as $member) {
                         echo '<tr>';
-                        echo '<td scope="row">' . $user['name'] . '</td>';
+                        echo '<td scope="row">' . $member['name'] . '</td>';
                         //Fetch the attendance data for the current date
                         $attendance = $database->select("attendance", [
                             'clock_in'
                         ], [
-                            'user_id' => $user['id'],
+                            'user_id' => $member['id'],
                             'clock_in[<>]' => [
                                 date('Y-m-d'),
                                 date('Y-m-d', time() + 86400)
@@ -100,7 +100,7 @@ $num_days = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
                             $attendance = $database->select("attendance", [
                                 'clock_in'
                             ], [
-                                'user_id' => $user['id'],
+                                'user_id' => $member['id'],
                                 'clock_in[<>]' => [
                                     date('Y-m-d', mktime(0, 0, 0, $current_month, $iter, $current_year)),
                                     date('Y-m-d', mktime(24, 60, 60, $current_month, $iter, $current_year))
